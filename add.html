@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Add Location - World Clock</title>
+    <script type='text/javascript' nonce='sk4SENH9jJKSerlX4LHytA=='
+        src='https://contribution.usercontent.google.com/dwBXmYeQh4DzcspqtajVfb-Jj2H5oou6f9IjxDX2beMWQxGFIIdRnbNtmyx32C4gInCNjCkn1x3ICX818lMO7EYisBccQpakChpyxkvk9rOlbrY3b-GDtermhXNxk4WEHuEACgVowLTI_SwAVW4qxaMsg8kjnOB5rsJRIjK0HNhDAJ1NaUmJEix9TkKpbcwaRbefaqmmqpKXL9U5WftZ2W38CStuHGIi2jtLbdRxuc-Oa2i1kpO_qlOjboesld6Cig9wJTw6dfgrzu_0ypq5r0YhnIuuBeBjVTnRWIuloDn6rHBE4oRow_26DnW8ri52XUt56QSMR6vQFRcsieGdbqdTGLUgFgT85iZSph92mFDbAATTA5y3Ys7-v4du4XAbOn6bgSQiG92NTgg_wabt2aqqVj5lryTBKLoyzf7_SHQ1xGkS3MFAwetYlI_26xmGQNVldD8rogItJI2LPmllR_K3cmDdrkUqjnI31dDGvZi2qkAHs8l3OLULoWyTToTwbaZ4zGqCAXnE5FR4go6JUePGJoMCdw7PBh7Up4xPozPqVfWoa1KJA2rqJM4qz4tQrixVApFWXFjuM2yTOeUYnxIHDId2mi5D0x6FeEfoIuDmFu_LgXUkX9s4ZjSKSSvTWf0jxGHUUbzQGxj10gAKEWdolThw-AJ-P9RVynA1EppE7V7QkvRJ7eltyE085Z-zx7-Z2UODk2y_WgvoQrB4jipWejWgcqh175uvP-AWv3hukMTAlPtshJ5dbP9L_Y40y6MNo3SPuekvqBtTDwf7EQhq03cPwXGNZyAi1qkr'></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1a110c",
+                        "surface-dark": "#2a1e18",
+                        "border-dark": "#3d2b24"
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-4 lg:p-0">
+    <!-- Backdrop / Dashboard Background Simulation -->
+    <div class="fixed inset-0 z-0 opacity-20 pointer-events-none overflow-hidden flex flex-wrap gap-8 p-10">
+        <div class="w-64 h-40 bg-surface-dark rounded-xl border border-border-dark"></div>
+        <div class="w-64 h-40 bg-surface-dark rounded-xl border border-border-dark"></div>
+        <div class="w-64 h-40 bg-surface-dark rounded-xl border border-border-dark"></div>
+        <div class="w-64 h-40 bg-surface-dark rounded-xl border border-border-dark"></div>
+        <div class="w-full max-w-4xl h-96 bg-surface-dark rounded-xl border border-border-dark mt-10"
+            data-location="World Map Overlay" style=""></div>
+    </div>
+    <!-- Modal Overlay -->
+    <div class="fixed inset-0 z-10 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-20 px-4">
+        <!-- Modal Container -->
+        <div
+            class="w-full max-w-[560px] bg-background-light dark:bg-background-dark border border-slate-200 dark:border-border-dark rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header
+                class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-border-dark">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">public</span>
+                    <h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Add
+                        Location</h2>
+                </div>
+                <button
+                    class="p-2 hover:bg-slate-100 dark:hover:bg-surface-dark rounded-lg transition-colors text-slate-500 dark:text-slate-400">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </header>
+            <!-- Search Section -->
+            <div class="p-6">
+                <div class="relative group">
+                    <div
+                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">search</span>
+                    </div>
+                    <input
+                        class="block w-full pl-11 pr-4 py-3 bg-slate-100 dark:bg-surface-dark border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 transition-all font-display"
+                        placeholder="Search for a city or time zone..." type="text" value="New" />
+                </div>
+                <!-- Suggestions List -->
+                <div class="mt-6 flex flex-col gap-1">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-2 mb-2">
+                        Suggested Results</h3>
+                    <!-- Result Item 1 -->
+                    <div
+                        class="group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-surface-dark cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-border-dark">
+                        <div
+                            class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+                            <span class="material-symbols-outlined">flag</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-slate-900 dark:text-white font-medium leading-none truncate mb-1">New York,
+                                USA</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-normal">UTC -5 • Eastern Time</p>
+                        </div>
+                        <button
+                            class="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-border-dark text-slate-600 dark:text-slate-300 group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-[20px]">add</span>
+                        </button>
+                    </div>
+                    <!-- Result Item 2 -->
+                    <div
+                        class="group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-surface-dark cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-border-dark">
+                        <div
+                            class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+                            <span class="material-symbols-outlined">flag</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-slate-900 dark:text-white font-medium leading-none truncate mb-1">Paris,
+                                France</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-normal">UTC +1 • Central European
+                                Time</p>
+                        </div>
+                        <button
+                            class="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-border-dark text-slate-600 dark:text-slate-300 group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-[20px]">add</span>
+                        </button>
+                    </div>
+                    <!-- Result Item 3 -->
+                    <div
+                        class="group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-surface-dark cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-border-dark">
+                        <div
+                            class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+                            <span class="material-symbols-outlined">flag</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-slate-900 dark:text-white font-medium leading-none truncate mb-1">Sydney,
+                                Australia</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-normal">UTC +11 • Australian
+                                Eastern Daylight Time</p>
+                        </div>
+                        <button
+                            class="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-border-dark text-slate-600 dark:text-slate-300 group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-[20px]">add</span>
+                        </button>
+                    </div>
+                    <!-- Result Item 4 (New Delhi example) -->
+                    <div
+                        class="group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-surface-dark cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-border-dark">
+                        <div
+                            class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+                            <span class="material-symbols-outlined">flag</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-slate-900 dark:text-white font-medium leading-none truncate mb-1">New Delhi,
+                                India</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-normal">UTC +5:30 • India Standard
+                                Time</p>
+                        </div>
+                        <button
+                            class="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-border-dark text-slate-600 dark:text-slate-300 group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-[20px]">add</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Action -->
+            <footer
+                class="p-6 pt-2 flex items-center justify-between border-t border-slate-200 dark:border-border-dark bg-slate-50/50 dark:bg-surface-dark/30">
+                <p class="text-sm text-slate-500 dark:text-slate-400 font-display">Showing 4 results for "New"</p>
+                <div class="flex gap-3">
+                    <button
+                        class="px-5 py-2.5 text-sm font-semibold rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-border-dark transition-all">
+                        Cancel
+                    </button>
+                    <button
+                        class="px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+                        View Map
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
